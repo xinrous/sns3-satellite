@@ -1,7 +1,7 @@
 # Satellite ns3
 
-Satellite Network Simulator 3 (SNS3) is a satellite network extension to Network Simulator 3 (ns-3) platform.
-SNS3 was initially developed by Magister Solutions under ESA contact.
+卫星网络模拟器 3 (SNS3) 是网络模拟器 3 (ns-3) 平台的卫星网络扩展。
+
 
 # License
 
