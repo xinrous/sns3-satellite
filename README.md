@@ -1,4 +1,4 @@
-# Satellite ns3
+# SNS3
 
 卫星网络模拟器 3 (SNS3) 是网络模拟器 3 (ns-3) 平台的卫星网络扩展。
 
@@ -7,8 +7,9 @@
 
 SNS3 is distributed under the GPLv3 license.
 
-# Installation Manual
+# 安装手册（Installation Manual）
 
+NS3 是作为 [NS3](https://www.nsnam.org/) 网络模拟器的扩展模块构建的。安装个人习惯waf安装
 SNS3 is built as an extension module to the [NS3](https://www.nsnam.org/) network simulator; so their [installation instructions](https://www.nsnam.org/docs/release/3.29/tutorial/html/getting-started.html) apply, particularly concerning the dependencies. They are repeated here for convenience and proper integration of SNS3.
 
 There are 2 methods to download and build (S)NS3:
@@ -103,60 +104,37 @@ and abort the build process if the dependency wasn't optional. You can ask bake 
 $ ./bake.py check
 ```
 
-## Waf
+## Waf安装
 
-Behind the scene, bake delegates to [waf](https://waf.io/apidocs/index.html) the build of NS3. If you wish to have finer 
-control over what is being compiled, you can handle the download process of the dependencies yourself and use waf directly to build NS3.
+安装NS3不做说明，SNS3模块需要'satellite'   'traffic'  'magister-stats'三个模块内容，将三个模块添加克隆进contrib目录
 
-You will need to:
+你将需要:
 
-
-*  get NS3 (either by [downloading](https://www.nsnam.org/release/) it, [cloning it using mercurial](http://code.nsnam.org/) or [cloning it using git](https://gitlab.com/nsnam/ns-3-dev.git));
-```shell
-$ git clone https://gitlab.com/nsnam/ns-3-dev.git ns-3.29
-
-```
-
-*  get the ''satellite'' module (by [cloning it using git](https://github.com/sns3/sns3-satellite));
 ```shell
 $ cd ns-3.29/contrib
+
 $ git clone https://github.com/sns3/sns3-satellite.git satellite
-
-```
-*  get the ''traffic'' and ''magister-stats'' modules (needed until they are integrated into NS3) as dependencies of the ''satellite'' module by cloning them :
-
-
-```shell
 $ git clone https://github.com/sns3/traffic.git traffic
 $ git clone https://github.com/sns3/stats.git magister-stats
     
 ```
+克隆3个模块后，从contrib目录进入satellite模块，进行子模块绑定（下载到data中,大约2G）。
 
-*note : When retrieving the **satellite**, **traffic** and **magister-stats** modules, you should put 
-them under the **ns-3.29/contrib/** folder. You can do so by cloning them directly in this folder, 
-extracting them here, copying the files afterwards or using symbolic links.*
+```shell
+$ git clone https://github.com/sns3/sns3-data.git data
+```
 
-Then you need to configure waf and ask it to build NS3. It will automatically build all modules found in contrib:
+然后，您需要配置 waf 并要求它构建 NS3。它将自动构建在 contrib 中找到的所有模块：
 
 ```shell
 $ cd ns-3.29
 $ ./waf configure -d optimized --enable-examples --enable-tests
 $ ./waf build -j 6
 ```
-You can also check waf options to customize it at will:
+也可以勾选waf选项，随意定制：
 
 
 ```shell
 $ ./waf --help
 ```
 
-## Post-Compilation
-
-Once you compiled SNS-3 successfully, you will need an extra step before being able to run any simulation: download the data defining the reference scenario of the simulation.
-
-These data are available as a separate repository and bundled as a submodule in SNS-3. You can download them afterwards in the ''satellite'' repository using:
-
-```shell
-$ cd source/ns-3.29/contrib/satellite
-$ git submodule update --init --recursive
-```
