@@ -37,6 +37,7 @@ $ git clone https://github.com/sns3/stats.git magister-stats
 克隆3个模块后，从contrib目录进入satellite模块，进行子模块绑定（下载到data中,大约2G）。
 
 ```shell
+$ cd ns-3.29/contrib/satellite
 $ git clone https://github.com/sns3/sns3-data.git data
 ```
 
