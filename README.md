@@ -27,7 +27,7 @@ There are 2 methods to download and build (S)NS3:
 你将需要:
 
 ```shell
-$ cd ns-3.29/contrib
+$ cd ns-3.33/contrib
 
 $ git clone https://github.com/sns3/sns3-satellite.git satellite
 $ git clone https://github.com/sns3/traffic.git traffic
@@ -44,8 +44,8 @@ $ git clone https://github.com/sns3/sns3-data.git data
 然后，您需要配置 waf 并要求它构建 NS3。它将自动构建在 contrib 中找到的所有模块：
 
 ```shell
-$ cd ns-3.29
-$ ./waf configure -d optimized --enable-examples --enable-tests
+$ cd ns-3.33
+$ ./waf configure -d debug --enable-examples --enable-tests
 $ ./waf build -j 6
 ```
 也可以勾选waf选项，随意定制：
